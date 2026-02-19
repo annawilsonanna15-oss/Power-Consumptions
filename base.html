@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Energy Analytics</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= TOP NAV BAR ================= -->
+    <div class="topbar">
+        <div class="topbar-left">
+            ⚡ Energy Analytics Platform
+        </div>
+
+        
+    
+    <div class="top-right">
+        
+        {% if current_user.is_authenticated %}
+            👤 Hai, <strong>{{ current_user.username }}</strong>
+        {% endif %}
+        
+    </div>
+    </div>
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="layout">
+
+        <!-- ========== SIDEBAR ========== -->
+        <div id="sidebar" class="sidebar">
+
+            <h3 class="sidebar-title">Navigation</h3>
+
+            <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('main.upload') }}">Upload Data</a>
+            <a href="{{ url_for('main.eda_page') }}">EDA</a>
+            <a href="{{ url_for('main.forecasting') }}">Forecasting</a>
+            <a href="{{ url_for('main.anomaly') }}">Anomaly Detection</a>
+            <a href="{{ url_for('main.comparison') }}">Model Comparison</a>
+            
+            <a href="{{ url_for('main.explain') }}">SHAP + LIME</a>
+
+
+            <a href="{{ url_for('main.monitor') }}">Model Monitor</a>
+
+            {% if current_user.role == "admin" %}
+                <hr>
+                <a href="{{ url_for('admin.admin_panel') }}">Admin Panel</a>
+            {% endif %}
+
+            <hr>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+            <br>
+            <button onclick="toggleSidebar()" class="toggle-btn">☰</button>
+            <button onclick="toggleTheme()" class="toggle-btn">🌙</button>
+
+        </div>
+       
+
+        <!-- ========== PAGE CONTENT ========== -->
+        <div class="content fade-in">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 Energy Analytics Platform | All Rights Reserved</p>
+    
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+    
+                <a href="https://linkedin.com" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+    
+                <a href="https://instagram.com" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

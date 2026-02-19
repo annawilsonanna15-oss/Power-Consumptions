@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h2>Energy Dashboard</h2>
+
+<div class="chart-container">
+    <canvas id="energyChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('energyChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+        datasets: [{
+            label: 'Energy Consumption',
+            data: [120,150,180,140,200,220,170],
+            borderColor: '#0f9b0f',
+            fill: true
+            
+        }]
+    }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-container">
+
+    <h1 class="page-title">Upload Energy Dataset</h1>
+   
+    <form method="POST" enctype="multipart/form-data" class="upload-box">
+
+        <div class="upload-area">
+            <input type="file" name="file" required>
+            <p>Drag and drop file here</p>
+            <span>Limit 200MB • CSV</span>
+        </div>
+
+        <button type="submit" class="btn-primary">
+            Upload & Process
+        </button>
+    </form>
+    {% if success %}
+    <div class="success-box">
+        ✔ Dataset uploaded successfully!
+    </div>
+    
+    <h3>Columns:</h3>
+    <div class="column-box">
+        <ul>
+            {% for col in columns %}
+                <li>{{ col }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <h3>Preview:</h3>
+    <div class="table-wrapper">
+        {{ preview|safe }}
+    </div>
+    {% endif %}
+    
+
+    
+
+</div>
+
+{% endblock %}

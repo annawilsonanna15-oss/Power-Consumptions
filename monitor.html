@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">📊 Model Performance Monitoring</h2><br>
+
+{% if error %}
+<div class="error-box" style="text-align:center;">
+    {{ error }}
+</div>
+{% endif %}
+
+<div class="monitor-container">
+
+    <!-- ARIMA Card -->
+    <div class="monitor-card arima">
+        <h3>📈 ARIMA RMSE</h3>
+        <p class="metric">
+            {{ arima_rmse if arima_rmse else "N/A" }}
+        </p>
+    </div>
+
+    <!-- LSTM Card -->
+    <div class="monitor-card lstm">
+        <h3>🤖 LSTM RMSE</h3>
+        <p class="metric">
+            {{ lstm_rmse if lstm_rmse else "N/A" }}
+        </p>
+    </div>
+
+    <!-- Last Training -->
+    <div class="monitor-card training">
+        <h3>⏱ Last Training</h3>
+        <p class="metric">
+            {{ last_training if last_training else "N/A" }}
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+

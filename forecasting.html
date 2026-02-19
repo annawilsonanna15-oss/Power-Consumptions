@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>📈 Forecasting Analysis</h2>
+
+{% if error %}
+<div class="error-box">{{ error }}</div>
+{% endif %}
+
+<h3>ARIMA Model</h3>
+<p>RMSE: {{ arima_rmse }} | MAE: {{ arima_mae }}</p>
+<div class="chart-card">
+    {{ arima_graph|safe }}
+</div>
+
+<h3>LSTM Model</h3>
+<p>RMSE: {{ lstm_rmse }} | MAE: {{ lstm_mae }}</p>
+<div class="chart-card">
+    {{ lstm_graph|safe }}
+</div>
+
+<a href="{{ url_for('static', filename='../uploads/' + download_file) }}"
+   class="btn-primary">
+   Download Forecast CSV
+</a>
+<h1>Successfully</h1>
+{% endblock %}

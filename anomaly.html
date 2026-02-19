@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>🚨 Anomaly Detection</h2>
+
+<h3>Confusion Matrix (ISO vs SVM)</h3>
+
+<div class="stats-grid">
+    <div class="stat-card">TN: {{ tn }}</div>
+    <div class="stat-card">FP: {{ fp }}</div>
+    <div class="stat-card">FN: {{ fn }}</div>
+    <div class="stat-card">TP: {{ tp }}</div>
+</div>
+
+<div class="chart-card">
+    {{ anomaly_graph|safe }}
+</div>
+
+{% endblock %}

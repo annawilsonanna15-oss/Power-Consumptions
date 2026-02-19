@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin Panel</h2>
+
+<p>Total Users: {{ total_users }}</p>
+<p>Total Logins: {{ total_logins }}</p>
+
+<table border="1">
+<tr>
+<th>Username</th>
+<th>Role</th>
+<th>Login Count</th>
+<th>Last Login</th>
+</tr>
+
+{% for user in users %}
+<tr>
+<td>{{ user[0] }}</td>
+<td>{{ user[1] }}</td>
+<td>{{ user[2] }}</td>
+<td>{{ user[3] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

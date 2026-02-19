@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>📊 Exploratory Data Analysis</h2>
+
+{% if error %}
+<div class="error-box">
+    {{ error }}
+</div>
+{% endif %}
+
+{% if line_graph %}
+<div class="chart-card">
+    {{ line_graph|safe }}
+</div>
+{% endif %}
+
+{% if decomp_graph %}
+<div class="chart-card">
+    {{ decomp_graph|safe }}
+</div>
+{% endif %}
+
+{% endblock %}

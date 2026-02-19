@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>📊 AI Model Performance Dashboard</h2>
+
+{% if error %}
+<div class="error-box">{{ error }}</div>
+{% endif %}
+
+<!-- KPI CARDS -->
+<div class="kpi-container">
+
+    <div class="kpi-card">
+        <h4>🏆 Best Model</h4>
+        <p class="kpi-value">{{ best_model }}</p>
+        <small>Improvement: {{ improvement }}%</small>
+    </div>
+
+    <div class="kpi-card">
+        <h4>📈 ARIMA Score</h4>
+        <p class="kpi-value">{{ arima_score }}</p>
+    </div>
+
+    <div class="kpi-card">
+        <h4>📊 LSTM Score</h4>
+        <p class="kpi-value">{{ lstm_score }}</p>
+    </div>
+
+</div>
+
+<!-- TABLE -->
+<div class="comparison-card">
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>RMSE</th>
+                <th>MAE</th>
+                <th>Ranking Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="{% if best_model == 'ARIMA' %}winner-row{% endif %}">
+                <td>ARIMA</td>
+                <td>{{ arima_rmse }}</td>
+                <td>{{ arima_mae }}</td>
+                <td>{{ arima_score }}</td>
+            </tr>
+            <tr class="{% if best_model == 'LSTM' %}winner-row{% endif %}">
+                <td>LSTM</td>
+                <td>{{ lstm_rmse }}</td>
+                <td>{{ lstm_mae }}</td>
+                <td>{{ lstm_score }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- AI BADGE -->
+<div class="ai-badge">
+    🧠 AI Recommendation: 
+    <strong>{{ best_model }}</strong> delivers superior predictive performance.
+</div>
+
+<!-- RMSE BAR CHART -->
+<div class="chart-card">
+    {{ bar_chart|safe }}
+</div>
+
+<!-- RADAR CHART -->
+<div class="chart-card">
+    {{ radar_chart|safe }}
+</div>
+
+{% endblock %}

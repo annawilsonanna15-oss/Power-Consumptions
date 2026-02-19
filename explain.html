@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">🧠 Model Explainability Dashboard</h2>
+
+{% if error %}
+<div class="error-box">{{ error }}</div>
+{% endif %}
+
+{% if shap_bar %}
+<div class="card">
+    <h3>📊 SHAP Feature Importance (Bar Plot)</h3>
+    <img src="data:image/png;base64,{{ shap_bar }}" style="width:100%;">
+</div>
+{% endif %}
+
+{% if shap_force %}
+<div class="card">
+    <h3>⚡ SHAP Force Plot (Local Explanation)</h3>
+    <img src="data:image/png;base64,{{ shap_force }}" style="width:100%;">
+</div>
+{% endif %}
+
+{% if top5 %}
+<div class="card">
+    <h3>🏆 Top 5 Important Features</h3>
+    <table class="table">
+        <tr>
+            <th>Feature</th>
+            <th>Importance</th>
+        </tr>
+        {% for row in top5 %}
+        <tr>
+            <td>{{ row.Feature }}</td>
+            <td>{{ row.Importance | round(4) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+
+{% endblock %}
